@@ -1,0 +1,41 @@
+{
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "compilerOptions": {
+    "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    // "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+
+    // Linter checks
+    // "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "removeComments": true,
+    "allowJs": true,
+    "target": "esnext",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "outDir": "build",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "paths": {
+      "electron": ["node_modules/electron"]
+    },
+    "jsx": "react-jsx",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "include": ["electron/**/*", "src/**/*", "rebuildEDB"],
+  "exclude": ["node_modules", "<node_internals>/**", "bin/**"]
+}
