@@ -1,14 +1,14 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import globals from 'globals'
+import pluginJs from '@eslint/js'
+import tseslint from 'typescript-eslint'
 
-import prettierPlugin from 'eslint-plugin-prettier';
-import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier'
+import importPlugin from 'eslint-plugin-import'
 
 // 'off' - отключение правила
 // 'warn' - предупреждение
 // 'error' - ошибка
-const lintStatus = 'error';
+const lintStatus = 'error'
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts}'] },
@@ -182,4 +182,4 @@ export default [
       // 'no-magic-number': lintStatus
     },
   },
-];
+]
