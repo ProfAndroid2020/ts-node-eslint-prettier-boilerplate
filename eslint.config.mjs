@@ -1,6 +1,8 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
+
+import prettierPlugin from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
 
 // 'off' - отключение правила
@@ -9,24 +11,32 @@ import importPlugin from 'eslint-plugin-import';
 const lintStatus = 'error';
 
 export default [
-  {
-    ignores: ['.webpack/*', 'webpack/*', 'webpack.*.js', 'tests/*', 'doc/*', 'coverage/*', 'src/reportWebVitals.js'],
-  },
+  { files: ['**/*.{js,mjs,cjs,ts}'] },
   { languageOptions: { globals: globals.browser } },
-
-  // extends
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // Подключение плагинов
+  // Подключение и настройка плагина prettier
   {
     plugins: {
-      ['import']: importPlugin,
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'prettier/prettier': [
+        'error',
+        {},
+        {
+          usePrettierrc: true,
+        },
+      ],
     },
   },
 
-  // Настройки проверки импортов
+  // Подключение и настройка плагина import
   {
+    plugins: {
+      import: importPlugin,
+    },
     settings: {
       'import/parsers': {
         '@typescript-eslint/parser': ['.ts'],
@@ -40,14 +50,15 @@ export default [
         },
       },
     },
-  },
-
-  {
     rules: {
-
       /** Правило, которое проверяет пути импортов. При некорректном пути импорта будет сообщение об ошибке */
       'import/no-unresolved': 'error',
+    },
+  },
 
+  // Общие правила
+  {
+    rules: {
       /** Правило, запрещающее объявлять неиспользуемые переменные */
       'no-unused-vars': 'off',
 
